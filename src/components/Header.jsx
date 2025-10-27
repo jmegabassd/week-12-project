@@ -1,9 +1,11 @@
 //
 import Link from "next/link";
 
+import header from "@/styles/header.module.css";
+
 export default function HeaderPage() {
   return (
-    <div>
+    <div className={header.maincontainer}>
       <header>
         {/* Logo */}
         <div id="logo"></div>
