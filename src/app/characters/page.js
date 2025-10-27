@@ -1,84 +1,74 @@
-"use client";
+import { getClerkDetails } from "@/components/GetClerkDetails";
+import { db } from "@/utils/dbConnections";
 
-import ClerkDetails from "@/components/GetClerkDetails";
-import { useState } from "react";
+export const dynamic = "force-dynamic";
 
-export default function NewCharacterPage() {
-  const userId = ClerkDetails.id;
-  console.log(userId);
-  const [form, setForm] = useState({
-    name: "",
-    race: "",
-    class: "",
-    age: "",
-    gender: "",
-    avatar: "",
-    background: "",
-  });
-  const [message, setMessage] = useState("");
+export default async function NewCharacterPage() {
+  const user = await getClerkDetails();
 
-  // Dropdown options
+  if (!user) {
+    return (
+      <p className="text-center mt-10 text-red-600">
+        You must be logged in to create a character.
+      </p>
+    );
+  }
+
+  // :white_check_mark: Define valid options (must match your SQL CHECK constraints)
   const raceOptions = ["Human", "Pigeon", "Elf", "Gnome", "Goblin", "Werewolf"];
   const classOptions = ["Bard", "Hunter", "sorcerer", "Explorer", "Barbarian"];
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  // :brain: Define server action
+  async function createCharacter(formData) {
+    "use server";
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const name = formData.get("name");
+    const race = formData.get("race");
+    const charClass = formData.get("class");
+    const age = formData.get("age");
+    const gender = formData.get("gender");
+    const avatar = formData.get("avatar");
+    const background = formData.get("background");
 
-    if (!userId) {
-      setMessage("You must be logged in to create a character.");
-      return;
-    }
+    const query = `
+      INSERT INTO characters (user_id, name, race, class, age, gender, avatar, background)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      RETURNING id, name, race, class, age, gender, avatar, background, created_at;
+    `;
 
-    const res = await fetch("/api/characters", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...form, userId }),
-    });
+    const values = [
+      user.id,
+      name,
+      race,
+      charClass,
+      age,
+      gender,
+      avatar,
+      background,
+    ];
 
-    if (res.ok) {
-      setMessage("Character created!");
-      setForm({
-        name: "",
-        race: "",
-        class: "",
-        age: "",
-        gender: "",
-        avatar: "",
-        background: "",
-      });
-    } else {
-      const err = await res.json();
-      setMessage(`Error: ${err.error}`);
-    }
-  };
+    const result = await db.query(query, values);
+    console.log(":white_check_mark: Character created:", result.rows[0]);
+  }
 
+  // :receipt: Form UI
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white rounded-2xl shadow">
+    <div className="max-w-xl mx-auto p-6 bg-white rounded-2xl shadow mt-8">
       <h1 className="text-2xl font-bold mb-4 text-emerald-700">
-        Create Character
+        Create New Character
       </h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
+
+      <form action={createCharacter} className="space-y-4">
+        {/* Name */}
         <input
           name="name"
-          value={form.name}
-          onChange={handleChange}
-          placeholder="Name"
+          placeholder="Character Name"
           required
           className="border p-2 w-full rounded"
         />
 
         {/* Race dropdown */}
-        <select
-          name="race"
-          value={form.race}
-          onChange={handleChange}
-          required
-          className="border p-2 w-full rounded"
-        >
+        <select name="race" required className="border p-2 w-full rounded">
           <option value="">Select Race</option>
           {raceOptions.map((race) => (
             <option key={race} value={race}>
@@ -88,13 +78,7 @@ export default function NewCharacterPage() {
         </select>
 
         {/* Class dropdown */}
-        <select
-          name="class"
-          value={form.class}
-          onChange={handleChange}
-          required
-          className="border p-2 w-full rounded"
-        >
+        <select name="class" required className="border p-2 w-full rounded">
           <option value="">Select Class</option>
           {classOptions.map((cls) => (
             <option key={cls} value={cls}>
@@ -103,45 +87,43 @@ export default function NewCharacterPage() {
           ))}
         </select>
 
+        {/* Age */}
         <input
           name="age"
           type="number"
-          value={form.age}
-          onChange={handleChange}
           placeholder="Age"
           className="border p-2 w-full rounded"
         />
+
+        {/* Gender */}
         <input
           name="gender"
-          value={form.gender}
-          onChange={handleChange}
           placeholder="Gender"
           className="border p-2 w-full rounded"
         />
+
+        {/* Avatar URL */}
         <input
           name="avatar"
-          value={form.avatar}
-          onChange={handleChange}
           placeholder="Avatar URL"
           className="border p-2 w-full rounded"
         />
+
+        {/* Background */}
         <textarea
           name="background"
-          value={form.background}
-          onChange={handleChange}
-          placeholder="Background"
+          placeholder="Character Background"
           className="border p-2 w-full rounded"
         />
 
+        {/* Submit */}
         <button
           type="submit"
-          className="px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700"
+          className="w-full px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700"
         >
           Save Character
         </button>
       </form>
-
-      {message && <p className="mt-3 text-sm text-gray-700">{message}</p>}
     </div>
   );
 }
