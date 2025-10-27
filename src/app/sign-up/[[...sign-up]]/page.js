@@ -6,7 +6,6 @@ import { SignUp } from "@clerk/nextjs";
 export default function SignUpPage() {
   return (
     <div className={signup.maincontainer}>
-      <h1>Sign up to RPG</h1>
       <SignUp />
     </div>
   );
