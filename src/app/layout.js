@@ -1,5 +1,10 @@
+import { neobrutalism } from "@clerk/themes";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
+import SidebarPage from "@/components/Sidebar";
+import HeaderPage from "@/components/Header";
+import FooterPage from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,12 +23,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider
+      appearance={{
+        theme: [neobrutalism],
+      }}
+    >
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <HeaderPage />
+          <SidebarPage />
+          {children}
+          <FooterPage />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
