@@ -2,7 +2,6 @@ import { neobrutalism } from "@clerk/themes";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import SidebarPage from "@/components/Sidebar";
 import HeaderPage from "@/components/Header";
 import FooterPage from "@/components/Footer";
 
@@ -33,7 +32,6 @@ export default function RootLayout({ children }) {
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <HeaderPage />
-          <SidebarPage />
           {children}
           <FooterPage />
         </body>
