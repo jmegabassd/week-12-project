@@ -5,6 +5,13 @@ body {
   height: 100vh;
   height: 100dvh;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 120px 1fr;
   grid-template-rows: 80px 1fr 60px;
+}
+
+@media only screen and (max-width: 480px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px 1fr 120px 60px;
+  }
 }
