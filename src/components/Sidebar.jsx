@@ -1,4 +1,5 @@
 //
+import sidebar from "@/styles/sidebar.module.css";
 
 import {
   UserButton,
@@ -17,7 +18,7 @@ export default async function SidebarPage() {
   const { userId } = await auth();
 
   return (
-    <>
+    <div className={sidebar.maincontainer}>
       {/* we are conditionally rendering these buttons depending on the user being authenticated or not */}
       <SignedIn>
         <UserButton />
@@ -32,6 +33,6 @@ export default async function SidebarPage() {
           <button>Sign up here</button>
         </SignUpButton>
       </SignedOut>
-    </>
+    </div>
   );
 }
