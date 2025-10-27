@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.34.0",
+    "@clerk/themes": "^2.4.29",
     "dotenv": "^17.2.3",
     "narraleaf-react": "^0.8.6",
     "next": "15.5.6",
