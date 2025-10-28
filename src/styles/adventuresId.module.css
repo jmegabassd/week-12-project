@@ -1,0 +1,13 @@
+.maincontainer {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+@media only screen and (max-width: 480px) {
+  .maincontainer {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+}
