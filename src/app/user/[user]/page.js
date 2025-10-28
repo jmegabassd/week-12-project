@@ -26,6 +26,14 @@ export default async function UserProfile({ params }) {
   const result = await db.query(characterQuery, [clerkId]);
   const characters = result.rows;
 
+  //active button
+
+  async function handleActiveButton(formData) {
+    "use server";
+    const characterId = formData.get("character.id");
+    await db.query(`UPDATE characters SET is_active = true WHERE id = $1`, [characterId]);
+  }
+console.log(characterId)
   return (
     <div>
       {/* User card */}
@@ -82,6 +90,20 @@ export default async function UserProfile({ params }) {
                     {new Date(character.created_at).toLocaleDateString("en-GB")}
                   </p>
                 )}
+                <form action={handleActiveButton}>
+                  <input
+                    type="hidden"
+                    name="characterId"
+                    value={character.id}
+                  />
+
+                  <button
+                    type="submit"
+                    className="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition cursor-pointer"
+                  >
+                    Make Active
+                  </button>
+                </form>
               </div>
             ))}
           </div>
