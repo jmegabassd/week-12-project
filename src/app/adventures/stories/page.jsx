@@ -1,31 +1,35 @@
+//
 import { Story, Scene, Character } from "narraleaf-react";
 
-// Create a story
-const story1 = new Story("Story 1");
-const scene1 = new Scene("Scene 1", {
-  background: {
-    src: "/pictures/park-background.png",
-  },
-});
+//
+export function storyWithCharacter(activeCharacter) {
+  const { name, race, class: charClass, avatar, background } = activeCharacter;
 
-// define your characters
-const character1 = new Character("Character 1");
-const character2 = new Character("Character 2");
+  // Create story and scene
+  const story = new Story(`${name}'s First Adventure`);
+  const scene1 = new Scene("The Beginning", {
+    background: {
+      src: "",
+    },
+  });
 
-// add actions to the scene
-scene1.action([
-  character1
-    .say("Hello World!")
-    .say("Welcome to NarraLeaf!")
-    .say("This is a Visual Novel framework for React.")
-    .say("I hope you enjoy it!"),
+  // Define character
+  const hero = new Character(name, {
+    avatar: { src: avatar || "/pictures/default-avatar.png" },
+  });
 
-  character2
-    .say("Start your story by editing this file.")
-    .say("We have a lot of features for you."),
-]);
+  const narrator = new Character("Narrator");
 
-// add the scene to the story
-story1.entry(scene1);
+  // Dialogue
+  scene1.action([
+    narrator.say(`Our story begins with ${name}, the ${race} ${charClass}.`),
+    hero.say(`I've been waiting for this moment.`),
+    narrator.say("The air is thick with magic and possibility..."),
+    hero.say(`Time to see what fate has in store for me.`),
+  ]);
 
-export { story1 };
+  // Add the scene to the story
+  story.entry(scene1);
+
+  return story;
+}
