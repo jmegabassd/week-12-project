@@ -1,5 +1,6 @@
 //
 import sidebar from "@/styles/sidebar.module.css";
+import Link from "next/link";
 
 import {
   UserButton,
@@ -23,7 +24,11 @@ export default async function SidebarPage() {
       <SignedIn>
         <UserButton />
         {/* this is sensitive data, just for the demo */}
-        <p>{user?.username}</p>
+        {user?.username && (
+          <p>
+            <Link href={`/user/${user.username}`}>{user.username}</Link>
+          </p>
+        )}
       </SignedIn>
       <SignedOut>
         <SignInButton>
