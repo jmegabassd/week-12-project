@@ -2,12 +2,13 @@
 
 import { GameProviders, Player } from "narraleaf-react";
 import { storyWithCharacter } from "../stories/page";
+import adventuresId from "@/styles/adventuresId.module.css";
 
 export default function AdventureClient({ activeCharacter }) {
   const story = storyWithCharacter(activeCharacter);
 
   return (
-    <div className="w-screen h-screen bg-white flex items-center justify-center">
+    <div className={adventuresId.maincontainer}>
       <GameProviders>
         <Player
           story={story}
