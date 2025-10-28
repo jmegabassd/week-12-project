@@ -26,14 +26,19 @@ export default async function UserProfile({ params }) {
   const result = await db.query(characterQuery, [clerkId]);
   const characters = result.rows;
 
-  //active button
-
+  // Make character active button
   async function handleActiveButton(formData) {
     "use server";
-    const characterId = formData.get("character.id");
-    await db.query(`UPDATE characters SET is_active = true WHERE id = $1`, [characterId]);
+    const characterId = formData.get("characterId");
+    await db.query(
+      `UPDATE characters SET is_active = false WHERE user_id = $1`,
+      [clerkId]
+    );
+    await db.query(`UPDATE characters SET is_active = true WHERE id = $1`, [
+      characterId,
+    ]);
   }
-console.log(characterId)
+
   return (
     <div>
       {/* User card */}

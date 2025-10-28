@@ -1,6 +1,7 @@
 //
 import sidebar from "@/styles/sidebar.module.css";
 import Link from "next/link";
+import { db } from "@/utils/dbConnections";
 
 import {
   UserButton,
@@ -18,6 +19,19 @@ export default async function SidebarPage() {
   // we can use it to destructure the userId that clerk creates on sign-up
   const user = await currentUser();
 
+  let activeCharacter = null;
+
+  if (user) {
+    const clerkId = user.id;
+
+    const { rows } = await db.query(
+      `SELECT id, name, avatar, age, race, class FROM characters WHERE user_id = $1 AND is_active = true LIMIT 1`,
+      [clerkId]
+    );
+
+    activeCharacter = rows[0];
+  }
+
   return (
     <div className={sidebar.maincontainer}>
       {/* we are conditionally rendering these buttons depending on the user being authenticated or not */}
@@ -28,6 +42,28 @@ export default async function SidebarPage() {
           <p>
             <Link href={`/user/${user.username}`}>{user.username}</Link>
           </p>
+        )}
+
+        {activeCharacter && (
+          <div className={sidebar.characterCard}>
+            <h3>Active Character:</h3>
+
+            <div className={sidebar.characterInfo}>
+              {activeCharacter.avatar && (
+                <Image
+                  src={activeCharacter.avatar}
+                  alt={activeCharacter.name}
+                  width={50}
+                  height={50}
+                />
+              )}
+              <p>{activeCharacter.name}</p>
+              <p>{activeCharacter.age}</p>
+              <p>
+                {activeCharacter.race} - {activeCharacter.class}
+              </p>
+            </div>
+          </div>
         )}
       </SignedIn>
       <SignedOut>
