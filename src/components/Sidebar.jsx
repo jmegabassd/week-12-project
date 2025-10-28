@@ -40,7 +40,9 @@ export default async function SidebarPage() {
         {/* this is sensitive data, just for the demo */}
         {user?.username && (
           <p>
-            <Link href={`/user/${user.username}`}>{user.username}</Link>
+            <Link className={sidebar.link} href={`/user/${user.username}`}>
+              {user.username}
+            </Link>
           </p>
         )}
 

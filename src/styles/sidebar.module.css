@@ -13,3 +13,11 @@
     grid-row-end: 4;
   }
 }
+
+.link {
+  background-color: green;
+  color: white;
+  padding: 2px;
+  border-radius: 4px;
+  text-align: center;
+}
