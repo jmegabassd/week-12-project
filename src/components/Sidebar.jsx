@@ -2,6 +2,7 @@
 import sidebar from "@/styles/sidebar.module.css";
 import Link from "next/link";
 import { db } from "@/utils/dbConnections";
+import Image from "next/image";
 
 import {
   UserButton,
@@ -33,34 +34,37 @@ export default async function SidebarPage() {
   }
 
   return (
-    <div className={sidebar.maincontainer}>
-      {/* we are conditionally rendering these buttons depending on the user being authenticated or not */}
+    <aside
+      className={`${sidebar.maincontainer} bg-blue-900 text-white  min-h-screen p-6 flex flex-col gap-6 shadow-lg`}
+    >
       <SignedIn>
-        <UserButton />
-        {/* this is sensitive data, just for the demo */}
-        {user?.username && (
-          <p>
-            <Link className={sidebar.link} href={`/user/${user.username}`}>
+        <div className="flex items-center justify-between">
+          <UserButton />
+          {user?.username && (
+            <Link
+              href={`/user/${user.username}`}
+              className="bg-red-600 text-white px-3 py-1 rounded-md shadow-md"
+            >
               {user.username}
             </Link>
-          </p>
-        )}
+          )}
+        </div>
 
         {activeCharacter && (
-          <div className={sidebar.characterCard}>
-            <h3>Active Character:</h3>
-
-            <div className={sidebar.characterInfo}>
+          <div className="bg-slate-900 p-4 rounded-lg shadow-inner">
+            <h3 className="text-lg font-bold mb-2">Active Character:</h3>
+            <div className="flex flex-col items-start gap-1 text-sm">
               {activeCharacter.avatar && (
                 <Image
                   src={activeCharacter.avatar}
                   alt={activeCharacter.name}
                   width={50}
                   height={50}
+                  className="rounded-full"
                 />
               )}
-              <p>{activeCharacter.name}</p>
-              <p>{activeCharacter.age}</p>
+              <p className="font-semibold">{activeCharacter.name}</p>
+              <p>Age: {activeCharacter.age}</p>
               <p>
                 {activeCharacter.race} - {activeCharacter.class}
               </p>
@@ -68,14 +72,21 @@ export default async function SidebarPage() {
           </div>
         )}
       </SignedIn>
+
       <SignedOut>
-        <SignInButton>
-          <button>Sign in here</button>
-        </SignInButton>
-        <SignUpButton>
-          <button>Sign up here</button>
-        </SignUpButton>
+        <div className="flex flex-col gap-2">
+          <SignInButton>
+            <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+              Sign in here
+            </button>
+          </SignInButton>
+          <SignUpButton>
+            <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+              Sign up here
+            </button>
+          </SignUpButton>
+        </div>
       </SignedOut>
-    </div>
+    </aside>
   );
 }

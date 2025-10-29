@@ -1,5 +1,6 @@
 import { getClerkDetails } from "@/components/GetClerkDetails";
 import { db } from "@/utils/dbConnections";
+import AvatarPreview from "@/components/AvatarPreview";
 
 export const dynamic = "force-dynamic";
 
@@ -14,11 +15,21 @@ export default async function NewCharacterPage() {
     );
   }
 
-  // :white_check_mark: Define valid options (must match your SQL CHECK constraints)
+  // Options for character race and class
   const raceOptions = ["Human", "Pigeon", "Elf", "Gnome", "Goblin", "Werewolf"];
-  const classOptions = ["Bard", "Hunter", "sorcerer", "Explorer", "Barbarian"];
+  const classOptions = ["Bard", "Hunter", "Sorcerer", "Explorer", "Barbarian"];
 
-  // :brain: Define server action
+  // Options for character avatars
+  const characterAvatars = {
+    Human: "/images/avatars/human-avatar.png",
+    Pigeon: "/images/avatars/pigeon-avatar.png",
+    Elf: "/images/avatars/elf-avatar.png",
+    Gnome: "/images/avatars/gnome-avatar.png",
+    Goblin: "/images/avatars/goblin-avatar.png",
+    Werewolf: "/images/avatars/werewolf-avatar.png",
+  };
+
+  // Server action for creating new character form
   async function createCharacter(formData) {
     "use server";
 
@@ -27,7 +38,7 @@ export default async function NewCharacterPage() {
     const charClass = formData.get("class");
     const age = formData.get("age");
     const gender = formData.get("gender");
-    const avatar = formData.get("avatar");
+    const avatar = characterAvatars[race] || "";
     const background = formData.get("background");
 
     const query = `
@@ -48,10 +59,10 @@ export default async function NewCharacterPage() {
     ];
 
     const result = await db.query(query, values);
-    console.log(":white_check_mark: Character created:", result.rows[0]);
+    console.log("Character created:", result.rows[0]);
   }
 
-  // :receipt: Form UI
+  // Form
   return (
     <div className="max-w-xl mx-auto p-6 bg-white rounded-2xl shadow mt-8">
       <h1 className="text-2xl font-bold mb-4 text-emerald-700">
@@ -67,15 +78,11 @@ export default async function NewCharacterPage() {
           className="border p-2 w-full rounded"
         />
 
-        {/* Race dropdown */}
-        <select name="race" required className="border p-2 w-full rounded">
-          <option value="">Select Race</option>
-          {raceOptions.map((race) => (
-            <option key={race} value={race}>
-              {race}
-            </option>
-          ))}
-        </select>
+        {/* Race dropdown + Avatar preview (client component) */}
+        <AvatarPreview
+          raceOptions={raceOptions}
+          characterAvatars={characterAvatars}
+        />
 
         {/* Class dropdown */}
         <select name="class" required className="border p-2 w-full rounded">
@@ -102,12 +109,12 @@ export default async function NewCharacterPage() {
           className="border p-2 w-full rounded"
         />
 
-        {/* Avatar URL */}
+        {/* Avatar URL
         <input
           name="avatar"
-          placeholder="Avatar URL"
+          placeholder="(Optional) Custom avatar URL"
           className="border p-2 w-full rounded"
-        />
+        /> */}
 
         {/* Background */}
         <textarea
@@ -119,9 +126,9 @@ export default async function NewCharacterPage() {
         {/* Submit */}
         <button
           type="submit"
-          className="w-full px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700"
+          className="w-full px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 hover:cursor-pointer"
         >
-          Save Character
+          Create Character
         </button>
       </form>
     </div>
