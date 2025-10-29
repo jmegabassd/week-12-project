@@ -1,13 +1,14 @@
 "use client";
 import { Story, Scene, Character, Menu, Image, FadeIn } from "narraleaf-react";
-import ForestBackground from "../../../../public/images/backgrounds/forest-background.png";
 
 export function storyWithCharacter(activeCharacter) {
   const { name, race, class: charClass, avatar } = activeCharacter;
 
   const story = new Story(`${name}'s First Adventure`);
 
-  const scene_intro = new Scene("The Beginning", { background: { src: "" } });
+  const scene_intro = new Scene("The Beginning", {
+    background: { src: "/images/backgrounds/forest-background.png" },
+  });
   const scene_confront = new Scene("The Confrontation", {
     background: { src: "" },
   });
