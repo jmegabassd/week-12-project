@@ -20,17 +20,16 @@ export function storyWithCharacter(activeCharacter) {
   const heroImg = new Image({
     src: avatar || "/pictures/default-avatar.png",
     zoom: 1,
-    position: { xalign: 0.2, yalign: 0.3 },
+    position: { xalign: 0.1, yalign: 0.4 },
   });
   const strangerImg = new Image({
-    src: "",
-    zoom: 0.5,
-    position: { xalign: 0.8, yalign: 0.3 },
+    src: "/images/avatars/mysterious_stranger.png",
+    zoom: 1,
+    position: { xalign: 0.5, yalign: 0.4 },
   });
 
   scene_intro.action([
     heroImg.show(new FadeIn(800)),
-    strangerImg.show(new FadeIn(800)),
 
     narrator.say(`Our story begins with ${name}, the ${race} ${charClass}.`, {
       fontSize: 28,
@@ -41,6 +40,7 @@ export function storyWithCharacter(activeCharacter) {
 
     hero.say("It feels like something is calling to me.", { fontSize: 26 }),
     narrator.say("Suddenly, a figure emerges from the mist.", { fontSize: 28 }),
+    strangerImg.show(new FadeIn(800)),
     stranger.say("Traveler... you shouldn’t be here.", { fontSize: 26 }),
     hero.say("Who are you? And how do you know my name?", { fontSize: 26 }),
     stranger.say("That doesn’t matter now. What matters is your choice...", {

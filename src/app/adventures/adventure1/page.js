@@ -21,7 +21,7 @@ export default async function Adventure1Page() {
   if (!activeCharacter) {
     return (
       <p className="text-center mt-10 text-gray-700">
-        You don&apo;t have an active character yet.
+        You don&apos;t have an active character yet.
       </p>
     );
   }
