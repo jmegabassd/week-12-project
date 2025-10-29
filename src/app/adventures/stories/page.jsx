@@ -1,3 +1,4 @@
+"use client";
 import { Story, Scene, Character, Menu, Image, FadeIn } from "narraleaf-react";
 
 export function storyWithCharacter(activeCharacter) {
