@@ -14,15 +14,19 @@ CREATE TABLE public.characters (
   user_id VARCHAR(255) REFERENCES public.users(clerk_id) ON DELETE CASCADE,  -- FK to Clerk ID
   name text NOT NULL,
   race text CHECK (race IN ('Human', 'Pigeon', 'Elf', 'Gnome', 'Goblin', 'Werewolf')),
-  class text  CHECK (class IN ('Bard', 'Hunter', 'sorcerer', 'Explorer', 'Barbarian')),
+  class text  CHECK (class IN ('Bard', 'Hunter', 'Sorcerer', 'Explorer', 'Barbarian')),
   age int,
   gender text,
   avatar text, 
   background text,
+  health INT DEFAULT 100,
+  strength INT DEFAULT random(1, 10),
+  intelligence INT DEFAULT random(1, 10),
+  speed INT DEFAULT random(1, 10),
   created_at timestamptz DEFAULT now(),
   current_adventure text,
   current_step text,
-  adventure_state jsonb DEFAULT '{}'
+  adventure_state jsonb DEFAULT '{}',
   is_active BOOL DEFAULT false
 );
 
