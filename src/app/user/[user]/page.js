@@ -5,7 +5,7 @@ import DeleteCharacterButton from "@/components/DeleteCharacterButton";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
 
-export async function generateMetadata ({params}){
+export async function generateMetadata({ params }) {
   const clerkUser = await currentUser();
   const clerkId = clerkUser.id;
 
@@ -16,22 +16,17 @@ export async function generateMetadata ({params}){
 
   const user = rows[0];
 
-  if(!user){
-    return{
+  if (!user) {
+    return {
       title: "User not found",
-      description: "This user does not exist"
+      description: "This user does not exist",
     };
   }
 
-  return{
+  return {
     title: `${user.username}'s profile`,
-    description: `profile page for ${user.username} `
-    
-  }
-    
-  
-
-
+    description: `profile page for ${user.username} `,
+  };
 }
 
 export default async function UserProfile({ params }) {
@@ -86,7 +81,7 @@ export default async function UserProfile({ params }) {
   }
 
   return (
-    <div className="bg-slate-800 min-h-screen w-full">
+    <div className="bg-slate-800">
       <div className="max-w-5xl mx-auto px-4 py-10 space-y-10">
         {/* User Profile Card */}
         <div className="bg-slate-900 rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center gap-6">

@@ -4,8 +4,7 @@ import about from "@/styles/about.module.css";
 
 export default function AboutPage() {
   return (
-    <div className={`${about.maincontainer} bg-slate-800 min-h-screen w-full`}>
-      About our site.
+    <div className={`${about.maincontainer} bg-slate-800`}>
       <div className="max-w-4xl mx-auto space-y-8">
         <h1 className="text-4xl font-bold text-center text-red-500">
           Welcome to No Name RPG
