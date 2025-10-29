@@ -17,14 +17,15 @@ function GameDialog() {
   return (
     <Dialog
       style={{
-        backgroundColor: "red",
+        backgroundColor: "black",
+        height: "15rem",
         borderRadius: "12px",
         padding: "16px",
         boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
       }}
     >
-      <Nametag className="font-bold text-black" />
-      <Texts className="text-black text-lg" />
+      <Nametag className="text-white font-bold" />
+      <Texts className="text-white text-lg" />
     </Dialog>
   );
 }
