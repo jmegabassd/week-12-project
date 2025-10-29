@@ -19,3 +19,15 @@ body {
     grid-template-rows: 140px 1fr 150px 30px;
   }
 }
+
+@media only screen and (orientation: landscape) {
+  body {
+    grid-template-columns: 160px 1fr;
+    grid-template-rows: 80px 1fr 30px;
+  }
+
+  .cl-avatarBox {
+    width: 3rem;
+    height: 3rem;
+  }
+}

@@ -39,3 +39,12 @@
     height: 0;
   }
 }
+
+@media only screen and (orientation: landscape) {
+  .imagecontainer {
+    position: relative;
+    width: 75px;
+    padding-bottom: 75px;
+    height: 0;
+  }
+}
