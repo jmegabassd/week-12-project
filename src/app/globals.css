@@ -4,13 +4,18 @@ body {
   height: 100vh;
   height: 100dvh;
   display: grid;
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: 150px 1fr 40px;
+  grid-template-columns: 160px 1fr;
+  grid-template-rows: 160px 1fr 40px;
+}
+
+.cl-avatarBox {
+  width: 4rem;
+  height: 4rem;
 }
 
 @media only screen and (max-width: 480px) {
   body {
     grid-template-columns: 1fr;
-    grid-template-rows: 80px 1fr 120px 60px;
+    grid-template-rows: 140px 1fr 150px 30px;
   }
 }

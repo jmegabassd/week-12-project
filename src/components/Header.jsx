@@ -16,12 +16,14 @@ export default function HeaderPage() {
   return (
     <header className={`${header.maincontainer} bg-blue-900`}>
       {/* Logo */}
-      <div id="logo">
+      <div className={header.imagecontainer}>
         <Image
           src="/images/logo/nnrpg-logo.png"
-          width={120}
-          height={150}
           alt="Site logo."
+          className={header.image}
+          sizes="100%"
+          fill={true}
+          priority={true}
         />
       </div>
 

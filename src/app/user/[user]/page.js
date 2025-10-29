@@ -81,7 +81,7 @@ export default async function UserProfile({ params }) {
   }
 
   return (
-    <div className="bg-slate-800">
+    <div className="bg-slate-800 overflow-auto">
       <div className="max-w-5xl mx-auto px-4 py-10 space-y-10">
         {/* User Profile Card */}
         <div className="bg-slate-900 rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center gap-6">

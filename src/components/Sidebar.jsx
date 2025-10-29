@@ -35,42 +35,41 @@ export default async function SidebarPage() {
 
   return (
     <aside
-      className={`${sidebar.maincontainer} bg-blue-900 text-white p-6 flex flex-col gap-6 shadow-lg`}
+      className={`${sidebar.maincontainer} bg-blue-900 text-white p-2 flex flex-col gap-2 items-center`}
     >
       <SignedIn>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-2 items-center">
           <UserButton />
           {user?.username && (
             <Link
               href={`/user/${user.username}`}
-              className="bg-red-600 text-white px-3 py-1 rounded-md shadow-md"
+              className="bg-red-600 text-white rounded-md shadow-md"
             >
               {user.username}
             </Link>
           )}
         </div>
 
-        {activeCharacter && (
-          <div className="bg-slate-900 p-4 rounded-lg shadow-inner">
-            <h3 className="text-lg font-bold mb-2">Active Character:</h3>
-            <div className="flex flex-col items-start gap-1 text-sm">
-              {activeCharacter.avatar && (
-                <Image
-                  src={activeCharacter.avatar}
-                  alt={activeCharacter.name}
-                  width={50}
-                  height={50}
-                  className="rounded-full"
-                />
-              )}
-              <p className="font-semibold">{activeCharacter.name}</p>
-              <p>Age: {activeCharacter.age}</p>
-              <p>
-                {activeCharacter.race} - {activeCharacter.class}
-              </p>
+        <div className={sidebar.activechar}>
+          <h2 className="text-lg font-bold">Active Character:</h2>
+
+          {activeCharacter && (
+            <div className="bg-linear-to-b from-slate-900 to-slate-700 p-2 rounded-lg shadow-inner flex flex-col items-center">
+              <div className="flex flex-col items-start gap-1 text-sm">
+                {activeCharacter.avatar && (
+                  <Image
+                    src={activeCharacter.avatar}
+                    alt={activeCharacter.name}
+                    width={50}
+                    height={50}
+                    className="rounded-full"
+                  />
+                )}
+                <p className="font-semibold">{activeCharacter.name}</p>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </SignedIn>
 
       <SignedOut>
