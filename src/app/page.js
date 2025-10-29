@@ -1,5 +1,10 @@
 import homepage from "@/styles/homepage.module.css";
 
+export const metadata = {
+  title: "HomePage - No-Name RPG",
+  description: "RPG - Text Adventure Game",
+};
+
 export default function HomePage() {
   return (
     <div className={`${homepage.maincontainer} bg-slate-800 text-white`}>
