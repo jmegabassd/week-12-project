@@ -1,3 +1,5 @@
+"use client";
+
 import { Story, Scene, Character, Menu, Image, FadeIn } from "narraleaf-react";
 
 export function storyWithCharacter(activeCharacter) {
@@ -7,30 +9,23 @@ export function storyWithCharacter(activeCharacter) {
   const story = new Story(`${name}'s First Adventure`);
 
   // 🏞️ Scenes
-  const scene_intro = new Scene("The Beginning", {
-    background: { src: "" },
-  });
-
+  const scene_intro = new Scene("The Beginning", { background: { src: "" } });
   const scene_confront = new Scene("The Confrontation", {
     background: { src: "" },
   });
-
-  const scene_hide = new Scene("The Watcher", {
-    background: { src: "" },
-  });
+  const scene_hide = new Scene("The Watcher", { background: { src: "" } });
 
   // 👤 Characters
   const hero = new Character(name);
   const stranger = new Character("Mysterious Stranger");
   const narrator = new Character("Narrator");
 
-  // 🖼️ Images for characters
+  // 🖼️ Images
   const heroImg = new Image({
     src: avatar || "/pictures/default-avatar.png",
     zoom: 0.5,
     position: { xalign: 0.2, yalign: 0.3 },
   });
-
   const strangerImg = new Image({
     src: "",
     zoom: 0.5,
@@ -40,21 +35,14 @@ export function storyWithCharacter(activeCharacter) {
   // 🌅 Intro Scene
   scene_intro.action([
     narrator.say(`Our story begins with ${name}, the ${race} ${charClass}.`),
-
-    // 👁️ Show hero with fade
     heroImg.show(new FadeIn(800)),
-
     narrator.say("A gentle breeze rustles through the ancient forest..."),
     hero.say("It feels like something is calling to me."),
-
-    // 👁️ Show stranger
     strangerImg.show(new FadeIn(800)),
     narrator.say("Suddenly, a figure emerges from the mist."),
     stranger.say("Traveler... you shouldn’t be here."),
     hero.say("Who are you? And how do you know my name?"),
     stranger.say("That doesn’t matter now. What matters is your choice..."),
-
-    // 🪄 Player choice
     Menu.prompt("What will you do?")
       .choose("Step forward and confront the stranger.", [
         hero.say("I don’t back down from a challenge."),
@@ -62,10 +50,8 @@ export function storyWithCharacter(activeCharacter) {
         narrator.say(
           `${name} steps forward, ready to face whatever comes next.`
         ),
-
         heroImg.hide({ duration: 600 }),
         strangerImg.hide({ duration: 600 }),
-
         scene_intro.jumpTo(scene_confront),
       ])
       .choose("Retreat into the woods and observe from afar.", [
@@ -73,10 +59,8 @@ export function storyWithCharacter(activeCharacter) {
         hero.say("Something about them feels... off."),
         stranger.say("Cowardice can be wise — for a time."),
         narrator.say("The stranger disappears into the mist."),
-
         heroImg.hide({ duration: 600 }),
         strangerImg.hide({ duration: 600 }),
-
         scene_intro.jumpTo(scene_hide),
       ]),
   ]);
@@ -85,12 +69,10 @@ export function storyWithCharacter(activeCharacter) {
   scene_confront.action([
     heroImg.show(new FadeIn(600)),
     strangerImg.show(new FadeIn(600)),
-
     narrator.say("The clearing opens under a pale moon."),
     hero.say("This ends now."),
     stranger.say("You may not like how it ends."),
     narrator.say(`${name} braces for what’s to come...`),
-
     heroImg.hide({ duration: 400 }),
     strangerImg.hide({ duration: 400 }),
   ]);
@@ -106,7 +88,6 @@ export function storyWithCharacter(activeCharacter) {
     heroImg.hide({ duration: 400 }),
   ]);
 
-  // 🎬 Entry point
   story.entry(scene_intro);
 
   return story;
