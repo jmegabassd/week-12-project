@@ -62,7 +62,7 @@ export default async function NewCharacterPage() {
     const result = await db.query(query, values);
     console.log("Character created:", result.rows[0]);
 
-    redirect(`/user/${user.id}`);
+    redirect(`/user/${user.username}`);
   }
 
   // Form
