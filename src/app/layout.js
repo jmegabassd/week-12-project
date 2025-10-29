@@ -23,7 +23,7 @@ export const metadata = {
     title: "No-Name RPG",
     description: "RPG - Text Adventure Game",
     type: "website",
-    url: "https://week-12-project-bxiju2g2a-megabass-projects.vercel.app/",
+    url: "https://week-12-project-iota.vercel.app/",
     // images: ["https://next-comments-postgres.vercel.app/og-image.png"], // add an appropriate image to your public folder - need to be in an array
   },
 };
