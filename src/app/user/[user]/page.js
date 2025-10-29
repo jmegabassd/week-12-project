@@ -54,7 +54,7 @@ export default async function UserProfile({ params }) {
   }
 
   // Fetch characters
-  const characterQuery = `SELECT id, name, race, class, age, gender, avatar, background, created_at FROM characters WHERE user_id = $1 ORDER BY created_at DESC;`;
+  const characterQuery = `SELECT id, name, race, class, age, gender, avatar, background, health, strength, intelligence, speed, created_at FROM characters WHERE user_id = $1 ORDER BY created_at DESC;`;
   const result = await db.query(characterQuery, [clerkId]);
   const characters = result.rows;
 
@@ -172,6 +172,25 @@ export default async function UserProfile({ params }) {
                       {character.background}
                     </p>
                   )}
+
+                  {/* Stats Section */}
+                  <div className="bg-slate-800 p-2 rounded-md space-y-1">
+                    <h4 className="text-sm font-semibold text-gray-200">
+                      Stats:
+                    </h4>
+                    <p className="text-xs text-gray-300">
+                      Health: {character.health}
+                    </p>
+                    <p className="text-xs text-gray-300">
+                      Strength: {character.strength}
+                    </p>
+                    <p className="text-xs text-gray-300">
+                      Intelligence: {character.intelligence}
+                    </p>
+                    <p className="text-xs text-gray-300">
+                      Speed: {character.speed}
+                    </p>
+                  </div>
 
                   {character.created_at && (
                     <p className="text-xs text-gray-200">

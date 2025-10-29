@@ -1,6 +1,7 @@
 import { getClerkDetails } from "@/components/GetClerkDetails";
 import { db } from "@/utils/dbConnections";
 import AvatarPreview from "@/components/AvatarPreview";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
@@ -60,6 +61,8 @@ export default async function NewCharacterPage() {
 
     const result = await db.query(query, values);
     console.log("Character created:", result.rows[0]);
+
+    redirect(`/user/${user.id}`);
   }
 
   // Form
