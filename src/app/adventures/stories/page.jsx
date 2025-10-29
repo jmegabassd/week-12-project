@@ -1,35 +1,113 @@
-//
-import { Story, Scene, Character } from "narraleaf-react";
+import { Story, Scene, Character, Menu, Image, FadeIn } from "narraleaf-react";
 
-//
 export function storyWithCharacter(activeCharacter) {
-  const { name, race, class: charClass, avatar, background } = activeCharacter;
+  const { name, race, class: charClass, avatar } = activeCharacter;
 
-  // Create story and scene
+  // 🎭 Create story
   const story = new Story(`${name}'s First Adventure`);
-  const scene1 = new Scene("The Beginning", {
-    background: {
-      src: "",
-    },
+
+  // 🏞️ Scenes
+  const scene_intro = new Scene("The Beginning", {
+    background: { src: "" },
   });
 
-  // Define character
-  const hero = new Character(name, {
-    avatar: { src: avatar || "/pictures/default-avatar.png" },
+  const scene_confront = new Scene("The Confrontation", {
+    background: { src: "" },
   });
 
+  const scene_hide = new Scene("The Watcher", {
+    background: { src: "" },
+  });
+
+  // 👤 Characters
+  const hero = new Character(name);
+  const stranger = new Character("Mysterious Stranger");
   const narrator = new Character("Narrator");
 
-  // Dialogue
-  scene1.action([
+  // 🖼️ Images for characters
+  const heroImg = new Image({
+    src: avatar || "/pictures/default-avatar.png",
+    zoom: 0.5,
+    position: { xalign: 0.2, yalign: 0.3 },
+  });
+
+  const strangerImg = new Image({
+    src: "",
+    zoom: 0.5,
+    position: { xalign: 0.8, yalign: 0.3 },
+  });
+
+  // 🌅 Intro Scene
+  scene_intro.action([
     narrator.say(`Our story begins with ${name}, the ${race} ${charClass}.`),
-    hero.say(`I've been waiting for this moment.`),
-    narrator.say("The air is thick with magic and possibility..."),
-    hero.say(`Time to see what fate has in store for me.`),
+
+    // 👁️ Show hero with fade
+    heroImg.show(new FadeIn(800)),
+
+    narrator.say("A gentle breeze rustles through the ancient forest..."),
+    hero.say("It feels like something is calling to me."),
+
+    // 👁️ Show stranger
+    strangerImg.show(new FadeIn(800)),
+    narrator.say("Suddenly, a figure emerges from the mist."),
+    stranger.say("Traveler... you shouldn’t be here."),
+    hero.say("Who are you? And how do you know my name?"),
+    stranger.say("That doesn’t matter now. What matters is your choice..."),
+
+    // 🪄 Player choice
+    Menu.prompt("What will you do?")
+      .choose("Step forward and confront the stranger.", [
+        hero.say("I don’t back down from a challenge."),
+        stranger.say("Brave words... let’s see if your courage matches them."),
+        narrator.say(
+          `${name} steps forward, ready to face whatever comes next.`
+        ),
+
+        heroImg.hide({ duration: 600 }),
+        strangerImg.hide({ duration: 600 }),
+
+        scene_intro.jumpTo(scene_confront),
+      ])
+      .choose("Retreat into the woods and observe from afar.", [
+        narrator.say(`${name} hides among the trees, watching the stranger.`),
+        hero.say("Something about them feels... off."),
+        stranger.say("Cowardice can be wise — for a time."),
+        narrator.say("The stranger disappears into the mist."),
+
+        heroImg.hide({ duration: 600 }),
+        strangerImg.hide({ duration: 600 }),
+
+        scene_intro.jumpTo(scene_hide),
+      ]),
   ]);
 
-  // Add the scene to the story
-  story.entry(scene1);
+  // ⚔️ Confrontation Scene
+  scene_confront.action([
+    heroImg.show(new FadeIn(600)),
+    strangerImg.show(new FadeIn(600)),
+
+    narrator.say("The clearing opens under a pale moon."),
+    hero.say("This ends now."),
+    stranger.say("You may not like how it ends."),
+    narrator.say(`${name} braces for what’s to come...`),
+
+    heroImg.hide({ duration: 400 }),
+    strangerImg.hide({ duration: 400 }),
+  ]);
+
+  // 🌲 Watcher Scene
+  scene_hide.action([
+    heroImg.show(new FadeIn(600)),
+    narrator.say("You remain hidden as silence falls over the forest."),
+    hero.say("They vanished... but I’ll find them again."),
+    narrator.say(
+      "The forest holds many secrets, and tonight it has claimed one more."
+    ),
+    heroImg.hide({ duration: 400 }),
+  ]);
+
+  // 🎬 Entry point
+  story.entry(scene_intro);
 
   return story;
 }
