@@ -2,6 +2,11 @@
 
 import about from "@/styles/about.module.css";
 
+export const metadata = {
+  title: "About - No-Name RPG",
+  description: "RPG - Text Adventure Game",
+};
+
 export default function AboutPage() {
   return (
     <div className={`${about.maincontainer} bg-slate-800`}>
