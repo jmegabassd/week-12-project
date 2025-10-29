@@ -1,5 +1,6 @@
 "use client";
 import { Story, Scene, Character, Menu, Image, FadeIn } from "narraleaf-react";
+import ForestBackground from "../../../../public/images/backgrounds/forest-background.png";
 
 export function storyWithCharacter(activeCharacter) {
   const { name, race, class: charClass, avatar } = activeCharacter;
@@ -78,6 +79,15 @@ export function storyWithCharacter(activeCharacter) {
         strangerImg.hide({ duration: 600 }),
         scene_intro.jumpTo(scene_hide),
       ]),
+  ]);
+
+  scene_confront.action([
+    heroImg.show(new FadeIn(800)),
+    strangerImg.show(new FadeIn(800)),
+
+    narrator.say("The stranger ", {
+      fontSize: 28,
+    }),
   ]);
 
   story.entry(scene_intro);
