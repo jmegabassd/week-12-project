@@ -35,7 +35,7 @@ export default async function SidebarPage() {
 
   return (
     <aside
-      className={`${sidebar.maincontainer} bg-blue-900 text-white  min-h-screen p-6 flex flex-col gap-6 shadow-lg`}
+      className={`${sidebar.maincontainer} bg-blue-900 text-white p-6 flex flex-col gap-6 shadow-lg`}
     >
       <SignedIn>
         <div className="flex items-center justify-between">
