@@ -5,6 +5,35 @@ import DeleteCharacterButton from "@/components/DeleteCharacterButton";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
 
+export async function generateMetadata ({params}){
+  const clerkUser = await currentUser();
+  const clerkId = clerkUser.id;
+
+  const { rows } = await db.query(
+    "SELECT clerk_id, username, email, image_url, bio, created_at FROM users WHERE clerk_id = $1",
+    [clerkId]
+  );
+
+  const user = rows[0];
+
+  if(!user){
+    return{
+      title: "User not found",
+      description: "This user does not exist"
+    };
+  }
+
+  return{
+    title: `${user.username}'s profile`,
+    description: `profile page for ${user.username} `
+    
+  }
+    
+  
+
+
+}
+
 export default async function UserProfile({ params }) {
   const profileId = await params.profileId;
 
