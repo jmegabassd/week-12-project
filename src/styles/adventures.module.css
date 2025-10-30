@@ -11,3 +11,11 @@
     grid-column-end: 2;
   }
 }
+
+.loader {
+  display: none;
+}
+
+.adventureBtn:active .loader {
+  display: block;
+}

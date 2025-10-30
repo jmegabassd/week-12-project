@@ -1,4 +1,5 @@
 import homepage from "@/styles/homepage.module.css";
+import MotionPage from "@/components/motion";
 
 export const metadata = {
   title: "HomePage - No-Name RPG",
@@ -9,6 +10,7 @@ export default function HomePage() {
   return (
     <div className={`${homepage.maincontainer} bg-slate-800 text-white`}>
       {/* Hero Section */}
+
       <section className="relative bg-linear-to-b from-slate-900 to-slate-800 py-20 px-6 text-center">
         <div className="max-w-4xl mx-auto space-y-6">
           <h1 className="text-5xl md:text-6xl font-extrabold text-red-500 drop-shadow-lg">
@@ -33,6 +35,8 @@ export default function HomePage() {
             </a>
           </div>
         </div>
+    <MotionPage />
+
 
         {/* Decorative gradient element */}
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-linear-to-t from-slate-800 to-transparent" />
