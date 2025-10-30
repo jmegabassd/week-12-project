@@ -40,11 +40,11 @@
   }
 }
 
-@media only screen and (orientation: landscape) {
+@media only screen and (max-width: 940px) and (orientation: landscape) {
   .imagecontainer {
     position: relative;
-    width: 75px;
-    padding-bottom: 75px;
+    width: 64px;
+    padding-bottom: 64px;
     height: 0;
   }
 }

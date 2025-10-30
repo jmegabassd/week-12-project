@@ -20,14 +20,9 @@ body {
   }
 }
 
-@media only screen and (orientation: landscape) {
+@media only screen and (max-width: 940px) and (orientation: landscape) {
   body {
     grid-template-columns: 160px 1fr;
-    grid-template-rows: 80px 1fr 30px;
-  }
-
-  .cl-avatarBox {
-    width: 3rem;
-    height: 3rem;
+    grid-template-rows: 65px 1fr 30px;
   }
 }
