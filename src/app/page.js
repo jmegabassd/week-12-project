@@ -7,9 +7,7 @@ export default function HomePage() {
 
   return (
     <div
-      className={`${
-        homepage.maincontainer
-      } min-h-screen transition-colors duration-500 ${
+      className={`${homepage.maincontainer} transition-colors duration-500 ${
         darkMode ? "bg-slate-800 text-white" : "bg-gray-100 text-gray-900"
       }`}
     >
@@ -17,7 +15,7 @@ export default function HomePage() {
       <div className="flex justify-end p-4">
         <button
           onClick={() => setDarkMode(!darkMode)}
-          className={`px-4 py-2 rounded-lg font-semibold shadow-md transition ${
+          className={` cursor-pointer px-4 py-2 rounded-lg font-semibold shadow-md transition ${
             darkMode
               ? "bg-yellow-400 text-slate-900 hover:bg-yellow-300"
               : "bg-slate-800 text-white hover:bg-slate-700"
