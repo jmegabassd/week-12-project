@@ -21,7 +21,7 @@ export default function HeaderPage() {
           src="/images/logo/nnrpg-logo.png"
           alt="Site logo."
           className={header.image}
-          sizes="100%"
+          sizes="(max-width: 480px) 100px, (max-width: 940px) 75px, 150px"
           fill={true}
           priority={true}
         />
