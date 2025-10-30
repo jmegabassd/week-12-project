@@ -1,5 +1,4 @@
 import homepage from "@/styles/homepage.module.css";
-import MotionPage from "@/components/motion";
 
 export const metadata = {
   title: "HomePage - No-Name RPG",
@@ -35,8 +34,6 @@ export default function HomePage() {
             </a>
           </div>
         </div>
-    <MotionPage />
-
 
         {/* Decorative gradient element */}
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-linear-to-t from-slate-800 to-transparent" />
