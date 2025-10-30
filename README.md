@@ -39,6 +39,10 @@ below are the wireframes that we used to guide our project and app layout and de
 A list of any libraries, frameworks, or packages that your application requires in order to properly function:
 Express.js, pg, cors...
 
+# Schema
+
+![A picture of the sceme](public/images/wireFrame/schema.png)
+
 # Instructions on how to run your app:
 
 this is a list of the packages we used through out our project
@@ -51,7 +55,7 @@ npm i motion@11
 
 after you have set up your next app and installed the packages listed above we then followed the doccumentation for narraleaf which allowed us to create our app.
 
-# Supabase Clerk Synconise details setup
+# Supabase Clerk Syncronise details setup
 
 > navigate to edge functions in Supabase project overview
 >
@@ -68,7 +72,7 @@ On the user side you are presented with the home page with a create characters a
 
 # Lighthouse report:
 
-blelow is a picture of the results from our light house report
+below is a picture of the results from our light house report
 ![An image of the scores from  the light house scan](/public/images/lighthouse/lighthouse.png)
 
 # Reflections:
@@ -90,9 +94,19 @@ thankfully the planning we made for this project help to guide our work and to h
 
 due to multiple people working on the code at once we had one merge conflict but we managed to resovle this issue with the help of Bertie and where able to quickly move on to the rest of our project.
 
-What went really well and what could have gone better?
-Rich:
+# What went really well and what could have gone better?
+
+>
+
+## Rich:
+
 I feel that overall the group worked well together we all managed to contribute and have being able to produce a good app that I am glad to have made while learning a new package such as narraleaf was difficult and presented a lot of challanges it has goven me a better understanding of next.js and I intend to return to this project and try to further develop it
+
+>
+
+## Joe:
+
+Trying to read through the Narraleaf doc was quite tricky and I feel to really understand it I would need more than the allowed time for the project, this may be in part that the docs weren't put together very well by the creater and/or looked slightly unfinished. We worked well as a group and for the most part we used mob coding which was good to have a different opinion/interpretation of the code to solve problem pretty effectively. At the beginning of the project I still was quite iffy with git branching but by the end I am feeling alot more comftable with it. I enjoyed working with everyone, I't felt like a well balenced group with lots of different ideas converging into the final product.
 
 Detailing useful external sources that helped you complete the assignment (e.g Youtube tutorials).
 Describing errors or bugs you encountered while completing your assignment.
