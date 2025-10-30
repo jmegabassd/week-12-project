@@ -10,7 +10,7 @@ export default async function CharacterComponent() {
   let activeCharacter = null;
   if (user) {
     const { rows } = await db.query(
-      `SELECT id, name, avatar, age, race, class FROM characters WHERE user_id = $1 AND is_active = true LIMIT 1`,
+      `SELECT id, name, avatar, age, race, class, health, strength, intelligence, speed FROM characters WHERE user_id = $1 AND is_active = true LIMIT 1`,
       [clerkId]
     );
 
