@@ -4,6 +4,7 @@ import Image from "next/image";
 import DeleteCharacterButton from "@/components/DeleteCharacterButton";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
+import EditBioButton from "@/components/EditBioButton";
 
 export async function generateMetadata({ params }) {
   const clerkUser = await currentUser();
@@ -105,14 +106,18 @@ export default async function UserProfile({ params }) {
               Joined: {new Date(user.created_at).toLocaleDateString("en-GB")}
             </p>
           </div>
+
+          <EditBioButton initialBio={user.bio} userId={user.clerk_id} />
         </div>
 
-        <Link
-          href={"/create-character"}
-          className="mt-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold px-4 py-2 rounded transition"
-        >
-          Create New Character
-        </Link>
+        <div className="flex justify-center mt-6 mb-8">
+          <Link
+            href={"/create-character"}
+            className="bg-green-600 hover:bg-green-700 text-white text-sm font-semibold px-4 py-2 rounded transition"
+          >
+            Create New Character
+          </Link>
+        </div>
 
         {/* Characters Section */}
         <div>
