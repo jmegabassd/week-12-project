@@ -112,8 +112,23 @@ export function storyWithCharacter(activeCharacter) {
   scene_confront.action([
     heroImg.show(new FadeIn(800)),
     strangerImg.show(new FadeIn(800)),
+    narrator.say("The confrontation begins...", {
+      fontSize: 28,
+      color: "white",
+    }),
+    hero.say("I’m ready for whatever happens.", {
+      fontSize: 28,
+      color: "white",
+    }),
+  ]);
 
-    narrator.say("The stranger ", {
+  // --- Scene: Hide (final scene) ---
+  scene_hide.action([
+    narrator.say("You watch the stranger fade into the mist.", {
+      fontSize: 28,
+      color: "white",
+    }),
+    hero.say("I’ll be better prepared next time.", {
       fontSize: 28,
       color: "white",
     }),
