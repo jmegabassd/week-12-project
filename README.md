@@ -24,12 +24,23 @@ User stories:
 - I want to see my active character
 - I want to know how to play the game
 
-Wireframe:
+# Wireframe:
+
+below are the wireframes that we used to guide our project and app layout and design
+![A picture of the home page](/public/images/wireFrame/homePage.png)
+![A picture of the about page](/public/images/wireFrame/aboutPage.png)
+![A picture of the form to register and create an account](/public/images/wireFrame/registerPage.png)
+![A picture of the log in form](/public/images/wireFrame/logInPage.png)
+![A picture of  a profile page](/public/images/wireFrame/profilePage.png)
+![A picture of a form to create a character](/public/images/wireFrame/charadcterFrom.png)
+![A picture of the page to pick which adventure you go on](/public/images/wireFrame/adventurePage.png)
+![A picture of a game page text eadventure](/public/images/wireFrame/gamePage.png)
 
 A list of any libraries, frameworks, or packages that your application requires in order to properly function:
 Express.js, pg, cors...
 
-Instructions on how to run your app:
+# Instructions on how to run your app:
+
 this is a list of the packages we used through out our project
 npm install narraleaf-react
 npm install @clerk/nextjs
@@ -55,9 +66,12 @@ after you have set up your next app and installed the packages listed above we t
 
 On the user side you are presented with the home page with a create characters and adventures page you will be prompted to make an account after you have made you account you will then be prompted to make a character and to set them as active, after you have set them as active you can now navigate to the adventures page and select an adventure to go on with the active character.
 
-Lighthouse report:
+# Lighthouse report:
 
-Reflections:
+blelow is a picture of the results from our light house report
+![An image of the scores from  the light house scan](/public/images/lighthouse/lighthouse.png)
+
+# Reflections:
 
 Please mention the requirements you met and which goals you achieved for this assignment.
 For this project we believe that we hit the requirements for this poject such as having authentication implemented with clerk that allows the user to sign-up an sing in doing so give them access to the create character form which let them create a new character which will redirect them to the users profile page which will display the users details and the characters that they have created, this page also gives them access to delete a character and to be able to edit the user profile.
@@ -83,7 +97,8 @@ I feel that overall the group worked well together we all managed to contribute 
 Detailing useful external sources that helped you complete the assignment (e.g Youtube tutorials).
 Describing errors or bugs you encountered while completing your assignment.
 
-References:
+# References and Resources:
+
 Third-party APIs, CSS resets, icons, images...
 https://react.narraleaf.com/
 
