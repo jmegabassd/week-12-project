@@ -33,7 +33,7 @@ export default function AvatarPreview({
         value={selectedRace}
         onChange={(e) => setSelectedRace(e.target.value)}
         required
-        className="border p-2 w-full rounded"
+        className="border border-red-500 text-white bg-slate-800 p-2 w-full rounded placeholder-gray-400"
       >
         <option value="">Select Race</option>
         {raceOptions.map((race) => (

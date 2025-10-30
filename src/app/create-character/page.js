@@ -67,73 +67,72 @@ export default async function NewCharacterPage() {
 
   // Form
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white rounded-2xl shadow mt-8">
-      <h1 className="text-2xl font-bold mb-4 text-emerald-700">
-        Create New Character
-      </h1>
+    <div className="bg-slate-800 overflow-auto">
+      <div className="max-w-xl mx-auto p-6 bg-slate-900 rounded-2xl shadow mt-8">
+        <h1 className="text-2xl font-bold mb-4 text-red-500">
+          Create New Character
+        </h1>
 
-      <form action={createCharacter} className="space-y-4">
-        {/* Name */}
-        <input
-          name="name"
-          placeholder="Character Name"
-          required
-          className="border p-2 w-full rounded"
-        />
+        <form action={createCharacter} className="space-y-4">
+          {/* Name */}
+          <input
+            name="name"
+            placeholder="Character Name"
+            required
+            className="border border-red-500 text-white bg-slate-800 p-2 w-full rounded placeholder-gray-400"
+          />
 
-        {/* Race dropdown + Avatar preview (client component) */}
-        <AvatarPreview
-          raceOptions={raceOptions}
-          characterAvatars={characterAvatars}
-        />
+          {/* Race dropdown and the avatar previeer */}
+          <AvatarPreview
+            raceOptions={raceOptions}
+            characterAvatars={characterAvatars}
+          />
 
-        {/* Class dropdown */}
-        <select name="class" required className="border p-2 w-full rounded">
-          <option value="">Select Class</option>
-          {classOptions.map((cls) => (
-            <option key={cls} value={cls}>
-              {cls}
-            </option>
-          ))}
-        </select>
+          {/* Class dropdown */}
+          <select
+            name="class"
+            required
+            className="border border-red-500 text-white bg-slate-800 p-2 w-full rounded placeholder-gray-400"
+          >
+            <option value="">Select Class</option>
+            {classOptions.map((cls) => (
+              <option key={cls} value={cls}>
+                {cls}
+              </option>
+            ))}
+          </select>
 
-        {/* Age */}
-        <input
-          name="age"
-          type="number"
-          placeholder="Age"
-          className="border p-2 w-full rounded"
-        />
+          {/* Age */}
+          <input
+            name="age"
+            type="number"
+            placeholder="Age"
+            className="border border-red-500 text-white bg-slate-800 p-2 w-full rounded placeholder-gray-400"
+          />
 
-        {/* Gender */}
-        <input
-          name="gender"
-          placeholder="Gender"
-          className="border p-2 w-full rounded"
-        />
+          {/* Gender */}
+          <input
+            name="gender"
+            placeholder="Gender"
+            className="border border-red-500 text-white bg-slate-800 p-2 w-full rounded placeholder-gray-400"
+          />
 
-        {/* Avatar URL
-        <input
-          name="avatar"
-          placeholder="(Optional) Custom avatar URL"
-          className="border p-2 w-full rounded"
-        /> */}
+          {/* Background */}
+          <textarea
+            name="background"
+            placeholder="Character Background"
+            className="border border-red-500 text-white bg-slate-800 p-2 w-full rounded placeholder-gray-400"
+          />
 
-        {/* Background */}
-        <textarea
-          name="background"
-          placeholder="Character Background"
-          className="border p-2 w-full rounded"
-        />
-
-        {/* Submit */}
-        <button
-          type="submit"
-          className="w-full px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 hover:cursor-pointer"
-        >
-          Create Character
-        </button>
-      </form>
+          {/* Submit */}
+          <button
+            type="submit"
+            className="w-full px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 hover:cursor-pointer"
+          >
+            Create Character
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
