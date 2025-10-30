@@ -1,6 +1,12 @@
 "use client";
 import homepage from "@/styles/homepage.module.css";
 import { useState } from "react";
+
+export const metadata = {
+  title: "HomePage - No-Name RPG",
+  description: "RPG - Text Adventure Game",
+};
+
 export default function HomePage() {
   const [darkMode, setDarkMode] = useState(true);
 
