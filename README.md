@@ -75,6 +75,11 @@ On the user side you are presented with the home page with a create characters a
 below is a picture of the results from our light house report
 ![An image of the scores from  the light house scan](/public/images/lighthouse/lighthouse.png)
 
+# Trello
+
+here is the trello we used throughout the project to ensure we all stayed organised and on task it also helped us with checking what tasks we should prioritise
+![An image of a trello task board](/public/images/trello/trello.png)
+
 # Reflections:
 
 Please mention the requirements you met and which goals you achieved for this assignment.
